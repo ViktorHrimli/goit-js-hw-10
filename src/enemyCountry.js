@@ -14,5 +14,6 @@ export function enemyCountry(official, svg, languages, capital, population) {
            <p><b>Languages:</b> ${languages} незабаром українська</p>
         </li>
       </ul>
+      <h1>Все буде Україна</h1>
       `;
 }
