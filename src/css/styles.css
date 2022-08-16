@@ -11,9 +11,6 @@ body {
   color: #212121;
   line-height: 1.5;
 }
-span {
-  font-size: 8px;
-}
 
 input {
   width: 500px;
