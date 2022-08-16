@@ -1,6 +1,7 @@
 import './css/styles.css';
 import Notiflix from 'notiflix';
 import * as _ from 'lodash.debounce';
+import { enemyCountry } from './enemyCountry';
 import { fetchCountries } from './fetchCountries.js';
 import { createListCountry } from './createList.js';
 import { createCountryInfo } from './countryInfo';
@@ -23,6 +24,7 @@ function listenInput(event) {
   // Fetch
   fetchCountries(sring.trim()).then(data => {
     clearHTMLList();
+
     if (data.length === 1) {
       Notiflix.Notify.success('Correct name');
       return infoCountry(data);
@@ -43,7 +45,7 @@ function fetchAnyCountries(countries) {
       name: { official },
       flags: { svg },
     } = item;
-    renderList(official, svg);
+    return renderList(official, svg);
   });
 }
 
@@ -56,6 +58,12 @@ function infoCountry(country) {
     population,
   } = country[0];
   const value = Object.values(languages);
+  if (official === 'Russian Federation') {
+    return refs.countryInfo.insertAdjacentHTML(
+      'afterbegin',
+      enemyCountry(official, svg, value, capital, population)
+    );
+  }
   refs.countryInfo.insertAdjacentHTML(
     'afterbegin',
     createCountryInfo(official, svg, value, capital, population)
