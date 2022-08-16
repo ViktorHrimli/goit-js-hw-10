@@ -1,6 +1,6 @@
 export function enemyCountry(official, svg, languages, capital, population) {
   return ` <div class="conteiner">
-  <img width="50" height="50" src="https://adm.dp.gov.ua/storage/app/media/uploaded-files/symbol/gerb_max.jpg" alt="" />
+  <img width="50" height="50" src="https://upload.wikimedia.org/wikipedia/commons/c/c5/MoscowPride.jpg" alt="" />
       <h2 class="country__text--head">Дніпропетровська область</h2>
       </div>
       <ul>
@@ -11,7 +11,7 @@ export function enemyCountry(official, svg, languages, capital, population) {
            <p><b>Population:</b>${population} поїхали до сибіру</p>
         </li>
           <li>
-           <p><b>Languages:</b> ${languages} незабаром українська</p>
+           <p><b>Languages:</b>незабаром українська</p>
         </li>
       </ul>
       `;
