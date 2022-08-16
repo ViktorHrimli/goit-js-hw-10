@@ -24,9 +24,7 @@ function listenInput(event) {
   // Fetch
   fetchCountries(sring.trim()).then(data => {
     clearHTMLList();
-
     if (data.length === 1) {
-      Notiflix.Notify.success('Correct name');
       return infoCountry(data);
     } else if (data.length > 1) {
       return fetchAnyCountries(data);
