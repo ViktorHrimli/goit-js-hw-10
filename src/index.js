@@ -20,10 +20,9 @@ function listenInput(event) {
     clearHTMLList();
     return;
   }
-
+  // Fetch
   fetchCountries(sring.trim()).then(data => {
     clearHTMLList();
-
     if (data.length === 1) {
       Notiflix.Notify.success('Correct name');
       return infoCountry(data);
@@ -39,21 +38,13 @@ function clearHTMLList() {
 }
 
 function fetchAnyCountries(countries) {
-  let fff = countries;
-  fff.map(item => {
+  countries.map(item => {
     const {
       name: { official },
-      flags: { png },
+      flags: { svg },
     } = item;
-    renderList(official, png);
+    renderList(official, svg);
   });
-}
-
-function renderList(country, img) {
-  refs.countryList.insertAdjacentHTML(
-    'afterbegin',
-    createListCountry(country, img)
-  );
 }
 
 function infoCountry(country) {
@@ -68,6 +59,13 @@ function infoCountry(country) {
   refs.countryInfo.insertAdjacentHTML(
     'afterbegin',
     createCountryInfo(official, svg, value, capital, population)
+  );
+}
+
+function renderList(country, img) {
+  refs.countryList.insertAdjacentHTML(
+    'afterbegin',
+    createListCountry(country, img)
   );
 }
 
