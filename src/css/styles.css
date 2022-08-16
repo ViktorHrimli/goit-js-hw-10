@@ -12,9 +12,50 @@ body {
   line-height: 1.5;
 }
 
+input {
+  width: 500px;
+}
+
 #search-box {
+  margin-top: 10px;
   font: inherit;
   padding: 8px;
   max-width: 320px;
   margin-bottom: 16px;
+  margin-left: 50px;
+}
+
+list,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  font-size: 24px;
+}
+
+.list-country {
+  margin-left: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.text-country {
+  margin-left: 15px;
+}
+
+.country-info {
+  margin-left: 50px;
+}
+
+.conteiner {
+  display: flex;
+  align-items: center;
+}
+
+.country__text--head {
+  margin-left: 30px;
+  font-size: 36px;
 }
