@@ -5,8 +5,7 @@ export function fetchCountries(name) {
   )
     .then(response => {
       if (!response.ok) {
-        Notiflix.Notify.failure('Oops, there is no country with that name');
-        return [];
+        throw new Error('');
       }
       return response.json();
     })
@@ -20,6 +19,8 @@ export function fetchCountries(name) {
       return data;
     })
     .catch(error => {
-      error;
+      Notiflix.Notify.failure('Oops, there is no country with that name');
+      console.log(error);
+      return [];
     });
 }
