@@ -17,6 +17,7 @@ const DEBOUNCE_DELAY = 300;
 function listenInput(event) {
   let sring = event.target.value;
   if (sring.trim() === '') {
+    clearHTMLList();
     return;
   }
 
@@ -57,7 +58,7 @@ function renderList(country, img) {
 
 function infoCountry(country) {
   const {
-    name: { common },
+    name: { official },
     flags: { svg },
     languages,
     capital,
@@ -66,7 +67,7 @@ function infoCountry(country) {
   const value = Object.values(languages);
   refs.countryInfo.insertAdjacentHTML(
     'afterbegin',
-    createCountryInfo(common, svg, value, capital, population)
+    createCountryInfo(official, svg, value, capital, population)
   );
 }
 
