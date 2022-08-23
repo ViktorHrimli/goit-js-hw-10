@@ -2,7 +2,7 @@ import './css/styles.css';
 import Notiflix from 'notiflix';
 import * as _ from 'lodash.debounce';
 import { enemyCountry } from './enemyCountry';
-import { fetchCountries } from './fetchCountries.js';
+import { getDataCountries } from './fetchCountries.js';
 import { createListCountry } from './createList.js';
 import { createCountryInfo } from './countryInfo';
 import { refs } from './refs.js';
@@ -17,62 +17,34 @@ const DEBOUNCE_DELAY = 300;
 // //FUNC
 function listenInput(event) {
   let sring = event.target.value;
-  if (sring.trim() === '') {
-    clearHTMLList();
-    return;
-  }
-  // Fetch
-  fetchCountries(sring.trim()).then(data => {
-    clearHTMLList();
-    if (data.length === 1) {
-      return infoCountry(data);
-    } else if (data.length > 1) {
-      return fetchAnyCountries(data);
-    }
-  });
+  if (sring.trim() === '') return clearHTMLList();
+  getDataCountries(sring.trim());
 }
 
-function clearHTMLList() {
+export function clearHTMLList() {
   refs.countryInfo.innerHTML = '';
   refs.countryList.innerHTML = '';
 }
 
-function fetchAnyCountries(countries) {
+export function fetchAnyCountries(countries) {
   countries.map(item => {
-    const {
-      name: { official },
-      flags: { svg },
-    } = item;
-    return renderList(official, svg);
+    return renderList(item);
   });
 }
 
-function infoCountry(country) {
-  const {
-    name: { official },
-    flags: { svg },
-    languages,
-    capital,
-    population,
-  } = country[0];
-  const value = Object.values(languages);
-  if (official === 'Russian Federation') {
+export function infoCountry(country) {
+  const { capital } = country[0];
+  if (capital === 'Moscow') {
     return refs.countryInfo.insertAdjacentHTML(
       'afterbegin',
-      enemyCountry(official, svg, value, capital, population)
+      enemyCountry(country)
     );
   }
-  refs.countryInfo.insertAdjacentHTML(
-    'afterbegin',
-    createCountryInfo(official, svg, value, capital, population)
-  );
+  refs.countryInfo.insertAdjacentHTML('afterbegin', createCountryInfo(country));
 }
 
-function renderList(country, img) {
-  refs.countryList.insertAdjacentHTML(
-    'afterbegin',
-    createListCountry(country, img)
-  );
+function renderList(item) {
+  refs.countryList.insertAdjacentHTML('afterbegin', createListCountry(item));
 }
 
 // listeners

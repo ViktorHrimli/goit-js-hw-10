@@ -1,7 +1,15 @@
-export function createCountryInfo(common, svg, languages, capital, population) {
+export function createCountryInfo(country) {
+  const {
+    name: { official },
+    flags: { svg },
+    languages,
+    capital,
+    population,
+  } = country[0];
+  const value = Object.values(languages);
   return ` <div class="conteiner">
-  <img width="50" height="50" src="${svg}" alt="${common}" />
-      <h2 class="country__text--head">${common}</h2>
+  <img width="50" height="50" src="${svg}" alt="${official}" />
+      <h2 class="country__text--head">${official}</h2>
       </div>
       <ul>
         <li>
@@ -11,7 +19,7 @@ export function createCountryInfo(common, svg, languages, capital, population) {
            <p><b>Population:</b> ${population}</p>
         </li>
           <li>
-           <p><b>Languages:</b> ${languages}</p>
+           <p><b>Languages:</b> ${value}</p>
         </li>
       </ul>
       `;

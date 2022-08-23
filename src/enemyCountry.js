@@ -1,4 +1,5 @@
-export function enemyCountry(official, svg, languages, capital, population) {
+export function enemyCountry(countrie) {
+  const { capital, population } = countrie[0];
   return ` <div class="conteiner">
   <img width="50" height="50" src="https://adm.dp.gov.ua/storage/app/media/uploaded-files/symbol/gerb_max.jpg" alt="" />
       <h2 class="country__text--head">Дніпропетровська область</h2>
